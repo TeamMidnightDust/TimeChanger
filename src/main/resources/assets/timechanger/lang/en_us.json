@@ -1,0 +1,6 @@
+{
+	"text.autoconfig.timechanger.title":"Time Changer Config",
+	"text.autoconfig.timechanger.option.custom_time":"Custom Time",
+	"text.autoconfig.timechanger.option.whitelist":"Server Whitelist",
+	"text.autoconfig.timechanger.option.blacklist":"Use Whitelist as Blacklist?"
+}

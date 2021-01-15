@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "eu.midnightdust.timechanger.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "MixinClientWorld"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
