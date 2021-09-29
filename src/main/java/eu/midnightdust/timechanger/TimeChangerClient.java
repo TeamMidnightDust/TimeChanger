@@ -1,8 +1,8 @@
 package eu.midnightdust.timechanger;
 
 import eu.midnightdust.timechanger.config.TimeChangerConfig;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 
 public class TimeChangerClient implements ClientModInitializer {
