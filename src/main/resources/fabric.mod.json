@@ -33,6 +33,6 @@
   ],
 
   "depends": {
-    "autoconfig1u": "*"
+    "cloth-config2": "*"
   }
 }
