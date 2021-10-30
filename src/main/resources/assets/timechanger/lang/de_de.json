@@ -1,0 +1,7 @@
+{
+	"text.autoconfig.timechanger.title":"Time Changer Konfiguration",
+	"text.autoconfig.timechanger.option.custom_time":"Eigene Zeit",
+	"text.autoconfig.timechanger.option.whitelist":"Angewandte Server",
+	"text.autoconfig.timechanger.option.blacklist":"Nutze Serverliste als Blacklist?",
+	"command.timechanger.ctime.success": "Zeit erfolgreich gesetzt auf "
+}
