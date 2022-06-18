@@ -5,11 +5,11 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import eu.midnightdust.timechanger.TimeChangerClient;
 import eu.midnightdust.timechanger.config.TimeChangerConfig;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
-import net.minecraft.text.TranslatableText;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.text.Text;
 
-import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.argument;
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
 
 public class CTimeCommand {
 
@@ -24,7 +24,7 @@ public class CTimeCommand {
         TimeChangerClient.TC_CONFIG.custom_time = time;
         AutoConfig.getConfigHolder(TimeChangerConfig.class).save();
 
-        source.sendFeedback(new TranslatableText("command.timechanger.ctime.success").append(String.valueOf(time)));
+        source.sendFeedback(Text.translatable("command.timechanger.ctime.success").append(String.valueOf(time)));
         return 1;
     }
 
