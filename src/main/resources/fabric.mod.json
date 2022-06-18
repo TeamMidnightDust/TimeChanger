@@ -22,9 +22,6 @@
   "entrypoints": {
     "client": [
       "eu.midnightdust.timechanger.TimeChangerClient"
-    ],
-    "modmenu": [
-      "eu.midnightdust.timechanger.config.ModMenuIntegration"
     ]
   },
 
@@ -33,6 +30,6 @@
   ],
 
   "depends": {
-    "cloth-config2": "*"
+    "midnightlib": "*"
   }
 }

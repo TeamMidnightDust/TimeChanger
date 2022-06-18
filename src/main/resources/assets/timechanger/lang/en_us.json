@@ -1,7 +1,8 @@
 {
-	"text.autoconfig.timechanger.title":"Time Changer Config",
-	"text.autoconfig.timechanger.option.custom_time":"Custom Time",
-	"text.autoconfig.timechanger.option.whitelist":"Server Allowlist",
-	"text.autoconfig.timechanger.option.blacklist":"Use Allowlist as Blocklist?",
+	"timechanger.midnightconfig.title":"Time Changer Config",
+	"timechanger.midnightconfig.custom_time":"Custom Time",
+	"timechanger.midnightconfig.custom_time.tooltip": "Set the Custom Time (-1 to disable)",
+	"timechanger.midnightconfig.allowlist":"Server Allowlist",
+	"timechanger.midnightconfig.blocklist":"Use Allowlist as Blocklist?",
 	"command.timechanger.ctime.success": "Successfully set the client time to "
 }

@@ -1,6 +1,6 @@
 package eu.midnightdust.timechanger.mixin;
 
-import eu.midnightdust.timechanger.TimeChangerClient;
+import eu.midnightdust.timechanger.config.TimeChangerConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -23,13 +23,13 @@ public abstract class MixinClientWorld {
     @Environment(EnvType.CLIENT)
     public void setTimeOfDay(long time, CallbackInfo ci) {
         if (client.getCurrentServerEntry() != null) {
-            if (TimeChangerClient.TC_CONFIG.custom_time >= 0 && TimeChangerClient.TC_CONFIG.whitelist.isEmpty()) {
-                this.clientWorldProperties.setTimeOfDay(TimeChangerClient.TC_CONFIG.custom_time);
-            } else if (TimeChangerClient.TC_CONFIG.custom_time >= 0 && client.getCurrentServerEntry().address != null) {
-                if (!TimeChangerClient.TC_CONFIG.blacklist && TimeChangerClient.TC_CONFIG.whitelist.contains(client.getCurrentServerEntry().address)) {
-                    this.clientWorldProperties.setTimeOfDay(TimeChangerClient.TC_CONFIG.custom_time);
-                } else if (TimeChangerClient.TC_CONFIG.blacklist && !TimeChangerClient.TC_CONFIG.whitelist.contains(client.getCurrentServerEntry().address)) {
-                    this.clientWorldProperties.setTimeOfDay(TimeChangerClient.TC_CONFIG.custom_time);
+            if (TimeChangerConfig.custom_time >= 0 && TimeChangerConfig.allowlist.isEmpty()) {
+                this.clientWorldProperties.setTimeOfDay(TimeChangerConfig.custom_time);
+            } else if (TimeChangerConfig.custom_time >= 0 && client.getCurrentServerEntry().address != null) {
+                if (!TimeChangerConfig.blocklist && TimeChangerConfig.allowlist.contains(client.getCurrentServerEntry().address)) {
+                    this.clientWorldProperties.setTimeOfDay(TimeChangerConfig.custom_time);
+                } else if (TimeChangerConfig.blocklist && !TimeChangerConfig.allowlist.contains(client.getCurrentServerEntry().address)) {
+                    this.clientWorldProperties.setTimeOfDay(TimeChangerConfig.custom_time);
                 }
                 else {ci.cancel();}
             }
