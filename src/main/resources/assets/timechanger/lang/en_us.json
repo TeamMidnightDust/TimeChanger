@@ -2,7 +2,15 @@
 	"timechanger.midnightconfig.title":"Time Changer Config",
 	"timechanger.midnightconfig.custom_time":"Custom Time",
 	"timechanger.midnightconfig.custom_time.tooltip": "Set the Custom Time (-1 to disable)",
+	"timechanger.midnightconfig.custom_weather":"Custom Weather",
+	"timechanger.midnightconfig.custom_weather.tooltip": "Set the Custom Time (Unset to disable)",
+	"timechanger.midnightconfig.enum.Weather.UNSET":"Unset",
+	"timechanger.midnightconfig.enum.Weather.CLEAR":"Clear",
+	"timechanger.midnightconfig.enum.Weather.RAIN":"Rain",
+	"timechanger.midnightconfig.enum.Weather.THUNDER":"Thunder",
 	"timechanger.midnightconfig.allowlist":"Server Allowlist",
 	"timechanger.midnightconfig.blocklist":"Use Allowlist as Blocklist?",
-	"command.timechanger.ctime.success": "Successfully set the client time to "
+	"timechanger.midnightconfig.enableInSingleplayer":"Enable in Singleplayer?",
+	"command.timechanger.ctime.success": "Successfully set the client time to ",
+	"command.timechanger.cweather.success": "Successfully set the client weather to "
 }

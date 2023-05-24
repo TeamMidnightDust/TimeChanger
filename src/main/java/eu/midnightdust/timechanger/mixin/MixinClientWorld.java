@@ -1,40 +1,43 @@
 package eu.midnightdust.timechanger.mixin;
 
+import eu.midnightdust.timechanger.TimeChangerClient;
 import eu.midnightdust.timechanger.config.TimeChangerConfig;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
-import org.spongepowered.asm.mixin.Final;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.profiler.Profiler;
+import net.minecraft.world.MutableWorldProperties;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.function.Supplier;
 
 @Mixin(ClientWorld.class)
 
-public abstract class MixinClientWorld {
+public abstract class MixinClientWorld extends World {
 
-    @Shadow @Final private ClientWorld.Properties clientWorldProperties;
-    @Shadow @Final private MinecraftClient client;
-
-    @Inject(at = @At("TAIL"), method = "setTimeOfDay", cancellable = true)
-    @Environment(EnvType.CLIENT)
-    public void setTimeOfDay(long time, CallbackInfo ci) {
-        if (client.getCurrentServerEntry() != null) {
-            if (TimeChangerConfig.custom_time >= 0 && TimeChangerConfig.allowlist.isEmpty()) {
-                this.clientWorldProperties.setTimeOfDay(TimeChangerConfig.custom_time);
-            } else if (TimeChangerConfig.custom_time >= 0 && client.getCurrentServerEntry().address != null) {
-                if (!TimeChangerConfig.blocklist && TimeChangerConfig.allowlist.contains(client.getCurrentServerEntry().address)) {
-                    this.clientWorldProperties.setTimeOfDay(TimeChangerConfig.custom_time);
-                } else if (TimeChangerConfig.blocklist && !TimeChangerConfig.allowlist.contains(client.getCurrentServerEntry().address)) {
-                    this.clientWorldProperties.setTimeOfDay(TimeChangerConfig.custom_time);
-                }
-                else {ci.cancel();}
-            }
-            else {ci.cancel();}
+    protected MixinClientWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, DynamicRegistryManager registryManager, RegistryEntry<DimensionType> dimensionEntry, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long biomeAccess, int maxChainedNeighborUpdates) {
+        super(properties, registryRef, registryManager, dimensionEntry, profiler, isClient, debugWorld, biomeAccess, maxChainedNeighborUpdates);
+    }
+    @Override
+    public float getRainGradient(float delta) {
+        if (TimeChangerClient.isEnabledOnWorld() && !TimeChangerConfig.custom_weather.equals(TimeChangerConfig.Weather.UNSET)) {
+            if (TimeChangerConfig.custom_weather.equals(TimeChangerConfig.Weather.CLEAR)) {
+                return 0f;
+            } else return 1f;
         }
-        else {ci.cancel();}
+        return super.getRainGradient(delta);
+    }
+
+    @Override
+    public float getThunderGradient(float delta) {
+        if (TimeChangerClient.isEnabledOnWorld() && !TimeChangerConfig.custom_weather.equals(TimeChangerConfig.Weather.UNSET)) {
+            if (TimeChangerConfig.custom_weather.equals(TimeChangerConfig.Weather.THUNDER)) {
+                return 1f;
+            } else return 0f;
+        }
+        return super.getRainGradient(delta);
     }
 }

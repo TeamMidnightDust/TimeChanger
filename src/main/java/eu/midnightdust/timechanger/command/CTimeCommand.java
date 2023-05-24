@@ -12,7 +12,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.arg
 public class CTimeCommand {
 
     public static LiteralArgumentBuilder<FabricClientCommandSource> command() {
-        return ClientCommandManager.literal("set").then(
+        return ClientCommandManager.literal("ctime").then(
                 argument("time", IntegerArgumentType.integer(-1))
                         .executes(ctx -> setTime(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "time")))
         );
@@ -22,7 +22,7 @@ public class CTimeCommand {
         TimeChangerConfig.custom_time = time;
         TimeChangerConfig.write("timechanger");
 
-        source.sendFeedback(Text.translatable("command.timechanger.ctime.success").append(String.valueOf(time)));
+        source.sendFeedback(Text.translatable("command.timechanger.ctime.success").append(time >= 0 ? String.valueOf(time) : "disabled"));
         return 1;
     }
 
