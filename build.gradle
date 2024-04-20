@@ -1,17 +1,17 @@
 plugins {
-	id 'fabric-loom' version '0.12.+'
+	id 'fabric-loom' version '1.6-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 repositories {
 	maven { url "https://api.modrinth.com/maven" }
+}
+
+base {
+	archivesName = project.archives_base_name
 }
 
 dependencies {
@@ -46,6 +46,9 @@ tasks.withType(JavaCompile).configureEach {
 // if it is present.
 // If you remove this task, sources will not be generated.
 java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
 	withSourcesJar()
 }
 
@@ -56,7 +59,7 @@ jar {
 // configure the maven publication
 publishing {
 	publications {
-		mavenJava(MavenPublication) {
+		create("mavenJava", MavenPublication) {
 			from components.java
 		}
 	}
