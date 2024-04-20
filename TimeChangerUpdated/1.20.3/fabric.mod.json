@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "timechangerUPDATED",
+  "version": "1.2.1",
+  "name": "Time Changer",
+  "description": "Allows you to change the time completely clientside! Updated to 1.20 and higher!",
+  "authors": [
+    "Falling",
+    "Motschen",
+    "TeamMidnightDust"
+  ],
+  "contact": {
+    "homepage": "https://www.midnightdust.eu/",
+    "sources": "https://github.com/F-alling/TimeChangerUpdated-",
+    "issues": "https://github.com/TeamMidnightDust/TimeChanger/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/timechanger/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "eu.midnightdust.timechanger.TimeChangerClient"
+    ]
+  },
+  "mixins": [
+    "timechanger.mixins.json"
+  ],
+  "depends": {
+    "midnightlib": "*"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/midnightlib-0.5.2.jar"
+    }
+  ]
+}
